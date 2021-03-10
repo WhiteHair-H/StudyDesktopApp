@@ -39,6 +39,7 @@ namespace travelWishApp
             // 
             // LsbWishCountry
             // 
+            this.LsbWishCountry.CheckOnClick = true;
             this.LsbWishCountry.FormattingEnabled = true;
             this.LsbWishCountry.Location = new System.Drawing.Point(12, 12);
             this.LsbWishCountry.Name = "LsbWishCountry";
