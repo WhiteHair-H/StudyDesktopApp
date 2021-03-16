@@ -127,27 +127,33 @@ namespace AddressInfoApp
                 return;
             }
 
-            using (SqlConnection conn = new SqlConnection(connsString))
+            if (MessageBox.Show("삭제하시겠습니까?", "삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.Yes)
             {
-                if (conn.State == ConnectionState.Closed)
+                using (SqlConnection conn = new SqlConnection(connsString))
                 {
-                    conn.Open(); // 디버깅을 했을 경우 이곳에서 오류가 났을 경우 connsString에서 잘못됨
-                }
-                string query = $"DELETE FROM Address WHERE idx = {result}";
+                    if (conn.State == ConnectionState.Closed)
+                    {
+                        conn.Open(); // 디버깅을 했을 경우 이곳에서 오류가 났을 경우 connsString에서 잘못됨
+                    }
+                    string query = $"DELETE FROM Address WHERE idx = {result}";
 
-                SqlCommand cmd = new SqlCommand(query, conn);
-                if (cmd.ExecuteNonQuery() == 1)
-                {
-                    MessageBox.Show("삭제성공");
-                }
-                else
-                {
-                    MessageBox.Show("삭제실패");
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    if (cmd.ExecuteNonQuery() == 1)
+                    {
+                        MessageBox.Show("삭제성공");
+                    }
+                    else
+                    {
+                        MessageBox.Show("삭제실패");
 
+                    }
+
+                    ClearInput();
+                    RefreshData();
                 }
 
-                ClearInput();
-                RefreshData();
+
+            
 
             }
         }
