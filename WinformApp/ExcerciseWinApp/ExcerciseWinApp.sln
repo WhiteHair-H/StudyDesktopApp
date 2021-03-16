@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListboxwinApp", "Listboxwin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RestaurentSelApp", "RestaurentSelApp\RestaurentSelApp.csproj", "{8CB1084C-3F21-4C53-AA0C-5DFF46A0BC87}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "travelWishApp", "travelWishApp\travelWishApp.csproj", "{9DA203D6-22FB-4276-8337-B3C02D9BD068}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TravelWishApp", "travelWishApp\TravelWishApp.csproj", "{9DA203D6-22FB-4276-8337-B3C02D9BD068}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ListViewApp", "ListViewApp\ListViewApp.csproj", "{8362F649-AAEF-4776-9C32-0D242C727F2B}"
 EndProject
