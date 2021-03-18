@@ -35,27 +35,38 @@ namespace BookRentalShopApp
             Environment.Exit(0);
         }
 
+        private void InitChildForm(Form frm, string srtTitle)
+        {
+            frm.Text = srtTitle;
+            frm.Dock = DockStyle.Fill;
+            frm.MdiParent = this; //FrmMain
+            frm.FormBorderStyle = FormBorderStyle.None;
+            frm.Width = this.ClientSize.Width - 10;
+            frm.Height = this.Height - menuStrip1.Height;
+            frm.Show();
+            frm.WindowState = FormWindowState.Maximized;
+        }
+
+
         private void MnuDivCode_Click(object sender, EventArgs e)
         {
             FrmDivCode frm = new FrmDivCode();
-            frm.Dock = DockStyle.Fill;
-            frm.MdiParent = this; //FrmMain
-            frm.Show();
-            frm.Width = this.ClientSize.Width - 10;
-            frm.Height = this.Height - menuStrip1.Height;
-            frm.WindowState = FormWindowState.Maximized;
+            InitChildForm(frm, "구분코드 관리");
 
         }
 
         private void MnuMember_Click(object sender, EventArgs e)
         {
             FrmMember frm = new FrmMember();
-            frm.Dock = DockStyle.Fill;
-            frm.MdiParent = this; //FrmMain
-            frm.Show();
-            frm.Width = this.ClientSize.Width - 10;
-            frm.Height = this.Height - menuStrip1.Height;
-            frm.WindowState = FormWindowState.Maximized;
+            InitChildForm(frm, "회원관리");
+
+        }
+
+        private void MnuBooks_Click(object sender, EventArgs e)
+        {
+            FrmBooks frm = new FrmBooks();
+            InitChildForm(frm, "책 관리");
+
         }
 
 
