@@ -9,25 +9,28 @@ namespace BookRentalShopApp
 {
     public partial class FrmMemberPopup : MetroForm
     {
-        #region 전역변수
-        public int selIdx { get; set; }
-        public string selName { get; set; }
+        #region 전역변수 영역
+
+        public int SelIdx { get; set; }
+
+        public string SelName { get; set; }
 
         #endregion
 
         #region 이벤트 영역
 
-        private void DgvData_CellClick(object sender, DataGridViewCellEventArgs e)
+        public FrmMemberPopup()
         {
-            if (e.RowIndex > -1) // 선택된 값이 존재하면
-            {
-                var selData = DgvData.Rows[e.RowIndex];
-            }
+            InitializeComponent();
         }
 
         private void FrmDivCode_Load(object sender, EventArgs e)
         {
             RefreshData();
+        }
+
+        private void FrmDivCode_Resize(object sender, EventArgs e)
+        {
         }
 
         #endregion
@@ -43,39 +46,28 @@ namespace BookRentalShopApp
                     if (conn.State == ConnectionState.Closed) conn.Open();
 
                     var query = @"SELECT [Idx]
-                                        ,[Names]
-                                        ,[Levels]
-                                        ,[Addr]
-                                        ,[Mobile]
-                                        ,[Email]
-                                    FROM [dbo].[membertbl]";
+                                      ,[Names]
+                                      ,[Levels]
+                                      ,[Addr]
+                                      ,[Mobile]
+                                      ,[Email]
+                                  FROM [dbo].[membertbl] ";
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     DataSet ds = new DataSet();
                     adapter.Fill(ds, "membertbl");
 
                     DgvData.DataSource = ds;
                     DgvData.DataMember = "membertbl";
-
                 }
             }
             catch (Exception ex)
             {
-                MetroMessageBox.Show(this, $"예외발생 {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroMessageBox.Show(this, $"예외발생 : {ex.Message}", "오류", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
 
             DgvData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
-
-
-        public FrmMemberPopup()
-        {
-            InitializeComponent();
-        }
-
-        /// <summary>
-        /// 입력값 유효성 체크 메서드
-        /// </summary>
-        /// <returns></returns>
 
         #endregion
 
@@ -89,12 +81,13 @@ namespace BookRentalShopApp
         {
             if (DgvData.SelectedRows.Count == 0)
             {
-                MetroMessageBox.Show(this, "데이터를 선택하세요", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MetroMessageBox.Show(this, "데이터를 선택하세요", "경고",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            selIdx = (int)DgvData.SelectedRows[0].Cells[0].Value;
-            selName = DgvData.SelectedRows[0].Cells[1].Value.ToString();
+            SelIdx = (int)DgvData.SelectedRows[0].Cells[0].Value;
+            SelName = DgvData.SelectedRows[0].Cells[1].Value.ToString();
 
             this.DialogResult = DialogResult.OK;
             this.Close();

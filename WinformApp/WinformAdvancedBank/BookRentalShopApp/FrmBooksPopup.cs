@@ -10,26 +10,37 @@ namespace BookRentalShopApp
 {
     public partial class FrmBooksPopup : MetroForm
     {
-        #region 전역변수
-        public int selIdx { get; set; }
-        public string selName { get; set; }
+        #region 전역변수 영역
+
+        public int SelIdx { get; set; }
+
+        public string SelName { get; set; }
 
         #endregion
 
         #region 이벤트 영역
 
-        private void DgvData_CellClick(object sender, DataGridViewCellEventArgs e)
+        public FrmBooksPopup()
         {
-            if (e.RowIndex > -1) // 선택된 값이 존재하면
-            {
-                var selData = DgvData.Rows[e.RowIndex];
-            }
+            InitializeComponent();
         }
 
         private void FrmDivCode_Load(object sender, EventArgs e)
         {
-            RefreshData();
+            RefreshData(); // 테이블 조회
         }
+
+        private void FrmDivCode_Resize(object sender, EventArgs e)
+        {
+        }
+
+        private void DgvData_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        #endregion
+
+        #region 커스텀 메서드 영역
 
         private void RefreshData()
         {
@@ -40,48 +51,41 @@ namespace BookRentalShopApp
                     if (conn.State == ConnectionState.Closed) conn.Open();
 
                     var query = @"SELECT b.Idx
-                                  ,b.Author
-                                  ,b.Division
-                                  ,b.Names
-                                  ,b.Descriptions
-                              FROM dbo.bookstbl as b";
+                                      ,b.Author
+                                      ,b.Division
+	                                  ,d.Names as DivName
+                                      ,b.Names
+                                      ,b.ReleaseDate
+                                  FROM dbo.bookstbl as b
+                                 INNER JOIN dbo.divtbl as d
+                                    ON b.Division = d.Division "; // 210318 Descriptions 컬럼추가
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     DataSet ds = new DataSet();
                     adapter.Fill(ds, "bookstbl");
 
                     DgvData.DataSource = ds;
                     DgvData.DataMember = "bookstbl";
-
                 }
             }
             catch (Exception ex)
             {
-                MetroMessageBox.Show(this, $"예외발생 {ex.Message}", "오류", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MetroMessageBox.Show(this, $"예외발생 : {ex.Message}", "오류", MessageBoxButtons.OK,
+                    MessageBoxIcon.Error);
             }
+
+            // 데이터그리드뷰 컬럼 화면에서 안보이게
+            var column = DgvData.Columns[2]; // Division 컬럼
+            column.Visible = false;
+
+            column = DgvData.Columns[4];
+            column.Width = 250;
+            column.HeaderText = "도서명";
+
+            column = DgvData.Columns[0]; // Idx
+            column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+
             DgvData.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
         }
-
-        #endregion
-
-        #region 커스텀 메서드 영역
-
-
-        /// <summary>
-        /// 삭제처리 프로세스
-        /// </summary>
-
-
-
-
-        public FrmBooksPopup()
-        {
-            InitializeComponent();
-        }
-
-        /// <summary>
-        /// 입력값 유효성 체크 메서드
-        /// </summary>
-        /// <returns></returns>
 
         #endregion
 
@@ -95,12 +99,13 @@ namespace BookRentalShopApp
         {
             if (DgvData.SelectedRows.Count == 0)
             {
-                MetroMessageBox.Show(this, "데이터를 선택하세요", "경고", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MetroMessageBox.Show(this, "데이터를 선택하세요", "경고",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            selIdx = (int)DgvData.SelectedRows[0].Cells[0].Value;
-            selName = DgvData.SelectedRows[0].Cells[3].Value.ToString();
+            SelIdx = (int)DgvData.SelectedRows[0].Cells[0].Value;
+            SelName = DgvData.SelectedRows[0].Cells[4].Value.ToString();
 
             this.DialogResult = DialogResult.OK;
             this.Close();

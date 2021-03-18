@@ -10,36 +10,28 @@ namespace BookRentalShopApp
 {
     public partial class FrmBooks : MetroForm
     {
-
         #region 전역변수 영역
 
-        public FrmBooks()
-        {
-            InitializeComponent();
-        }
-        
-        private bool IsNew = false; // false (수정) true (신규)
-
-        
+        private bool isNew = false; // false (수정) / true (신규)
 
         #endregion
 
         #region 이벤트 영역
 
-
-        
+        public FrmBooks()
+        {
+            InitializeComponent();
+        }
 
         private void FrmDivCode_Load(object sender, EventArgs e)
         {
-            IsNew = true; //신규 초기화
+            isNew = true; // 신규 초기화
             InitCboData(); // 콤보박스 들어가는 데이터 초기화
-            RefreshData(); //  테이블 조회
+            RefreshData(); // 테이블 조회
 
             DtpReleaseDate.CustomFormat = "yyyy-MM-dd";
             DtpReleaseDate.Format = DateTimePickerFormat.Custom;
         }
-
-        
 
         private void FrmDivCode_Resize(object sender, EventArgs e)
         {
@@ -52,35 +44,14 @@ namespace BookRentalShopApp
             if (e.RowIndex > -1) // 선택된 값이 존재하면
             {
                 var selData = DgvData.Rows[e.RowIndex];
-
                 AsignToControls(selData);
-                IsNew = false;
+                isNew = false;  // 수정
             }
-        }
-
-        private void AsignToControls(DataGridViewRow selData)
-        {
-            TxtIdx.Text = selData.Cells[0].Value.ToString();
-            TxtAuthor.Text = selData.Cells[1].Value.ToString();
-            CboDivision.SelectedValue = selData.Cells[2].Value; // B001 = B001
-            // selData.Cell[3] X
-            TxtNames.Text = selData.Cells[4].Value.ToString();
-            // ReleaseData
-            DtpReleaseDate.Value = (DateTime)selData.Cells[5].Value;
-            TxtISBN.Text = selData.Cells[6].Value.ToString();
-            
-            
-            TxtPrice.Text = selData.Cells[7].Value.ToString();
-
-            TxtDiscriptions.Text = selData.Cells[8].Value.ToString();
-
-
-            TxtIdx.ReadOnly = true;
         }
 
         private void BtnDelete_Click(object sender, EventArgs e)
         {
-            // Validation 체크
+            // Validation
             if (CheckValidation() == false) return;
             // 삭제질문
             if (MetroMessageBox.Show(this, "삭제하시겠습니까?", "삭제", MessageBoxButtons.YesNo, MessageBoxIcon.Question) == DialogResult.No) return;
@@ -109,11 +80,48 @@ namespace BookRentalShopApp
 
         #region 커스텀 메서드 영역
 
+        private void InitCboData()
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(Helper.Common.ConnString))
+                {
+                    if (conn.State == ConnectionState.Closed) conn.Open();
+                    var query = "SELECT Division, Names FROM dbo.divtbl ";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    SqlDataReader reader = cmd.ExecuteReader();
+                    var temp = new Dictionary<string, string>();
+                    while (reader.Read())
+                    {
+                        temp.Add(reader[0].ToString(), reader[1].ToString()); // (Key)B001, (Value)공포/스릴러
+                    }
+                    CboDivision.DataSource = new BindingSource(temp, null); // dataMember는 null로 
+                    CboDivision.DisplayMember = "Value";
+                    CboDivision.ValueMember = "Key";
+                    CboDivision.SelectedIndex = -1;
+                }
+            }
+            catch { }
+        }
 
+        private void AsignToControls(DataGridViewRow selData)
+        {
+            TxtIdx.Text = selData.Cells[0].Value.ToString();
+            TxtAuthor.Text = selData.Cells[1].Value.ToString();
+            CboDivision.SelectedValue = selData.Cells[2].Value; // B001 = B001
+            // selData.Cells[3] X
+            TxtNames.Text = selData.Cells[4].Value.ToString();
+            // ReleaseDate
+            DtpReleaseDate.Value = (DateTime)selData.Cells[5].Value;
+            TxtISBN.Text = selData.Cells[6].Value.ToString();
+            TxtPrice.Text = selData.Cells[7].Value.ToString();
+            TxtDescriptions.Text = selData.Cells[8].Value.ToString();
 
+            TxtIdx.ReadOnly = true;
+        }
 
         /// <summary>
-        /// 삭제 처리 프로세스
+        /// 삭제처리 프로세스
         /// </summary>
         private void DeleteData()
         {
@@ -125,30 +133,24 @@ namespace BookRentalShopApp
                     SqlCommand cmd = new SqlCommand();
                     cmd.Connection = conn;
 
-                    var query = "DELETE FROM [dbo].[bookstbl] " +
-                                " WHERE [Idx] = @Idx";
+                    var query = @"DELETE FROM [dbo].[bookstbl] 
+                                   WHERE [Idx] = @Idx ";
                     cmd.CommandText = query;
 
-                    var pIdx = new SqlParameter("@Idx", SqlDbType.VarChar, 8);
+                    var pIdx = new SqlParameter("@Idx", SqlDbType.Int);
                     pIdx.Value = TxtIdx.Text;
                     cmd.Parameters.Add(pIdx);
-
-                    //SqlParameter param;
-
-                    //cmd.Parameters.Add(param);
 
                     var result = cmd.ExecuteNonQuery();
                     if (result == 1)
                     {
-                        //저장성공
-                        MetroMessageBox.Show(this, "삭제 성공", "삭제", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        MetroMessageBox.Show(this, "삭제 성공", "삭제",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        //저장실패
-                        MetroMessageBox.Show(this, "삭제 실패", "삭제", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+                        MetroMessageBox.Show(this, "삭제 실패", "삭제",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -166,26 +168,25 @@ namespace BookRentalShopApp
                 using (SqlConnection conn = new SqlConnection(Helper.Common.ConnString))
                 {
                     if (conn.State == ConnectionState.Closed) conn.Open();
-                    {
-                        var query =   @"SELECT  b.Idx 
-                                              , b.Author 
-                                              , d.Division 
-	                                          , d.Names as DivName
-                                              , d.Names 
-                                              , b.ReleaseDate 
-                                              , b.ISBN 
-                                              , b.Price 
-                                              , b.Descriptions
-                                          FROM  dbo . bookstbl  b
-                                          INNER JOIN dbo.divtbl d
-                                          on b.Division = d.Division";
-                        SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                        DataSet ds = new DataSet();
-                        adapter.Fill(ds, "bookstbl");
 
-                        DgvData.DataSource = ds;
-                        DgvData.DataMember = "bookstbl";
-                    }
+                    var query = @"SELECT b.Idx
+                                      ,b.Author
+                                      ,b.Division
+	                                  ,d.Names as DivName
+                                      ,b.Names
+                                      ,b.ReleaseDate
+                                      ,b.ISBN
+                                      ,b.Price
+                                      ,b.Descriptions
+                                  FROM dbo.bookstbl as b
+                                 INNER JOIN dbo.divtbl as d
+                                    ON b.Division = d.Division "; // 210318 Descriptions 컬럼추가
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                    DataSet ds = new DataSet();
+                    adapter.Fill(ds, "bookstbl");
+
+                    DgvData.DataSource = ds;
+                    DgvData.DataMember = "bookstbl";
                 }
             }
             catch (Exception ex)
@@ -197,25 +198,19 @@ namespace BookRentalShopApp
             // 데이터그리드뷰 컬럼 화면에서 안보이게
             var column = DgvData.Columns[2]; // Division 컬럼
             column.Visible = false;
-            column = DgvData.Columns[8]; //Descriptions
+            column = DgvData.Columns[8]; // Descriptions
             column.Visible = false;
 
             column = DgvData.Columns[4];
             column.Width = 250;
             column.HeaderText = "도서명";
 
-            column = DgvData.Columns[0];
+            column = DgvData.Columns[0]; // Idx
             column.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-
-
-            column = DgvData.Columns[2];
-            column.Width = 100;
-
-
         }
 
         /// <summary>
-        /// 입력, 수정 데이터
+        /// 입력(수정)처리 프로세스
         /// </summary>
         private void SaveData()
         {
@@ -228,28 +223,29 @@ namespace BookRentalShopApp
                     cmd.Connection = conn;
 
                     var query = "";
-                    if (IsNew == true) // insert
+
+                    if (isNew == true) // ISNERT
                     {
                         query = @"INSERT INTO [dbo].[bookstbl]
-                                                   ([Author]
-                                                   ,[Division]
-                                                   ,[Names]
-                                                   ,[ReleaseDate]
-                                                   ,[ISBN]
-                                                   ,[Price]
-                                                   ,[Descriptions])
-                                             VALUES
-                                                   (@Author
-                                                   ,@Division
-                                                   ,@Names
-                                                   ,@ReleaseDate
-                                                   ,@ISBN
-                                                   ,@Price
-                                                   ,@Descriptions)";
+                                       ([Author]
+                                       ,[Division]
+                                       ,[Names]
+                                       ,[ReleaseDate]
+                                       ,[ISBN]
+                                       ,[Price]
+                                       ,[Descriptions])
+                                 VALUES
+                                       (@Author
+                                       ,@Division
+                                       ,@Names
+                                       ,@ReleaseDate
+                                       ,@ISBN
+                                       ,@Price
+                                       ,@Descriptions) ";
                     }
                     else // UPDATE
                     {
-                        query =   @"UPDATE [dbo].[bookstbl]
+                        query = @"UPDATE [dbo].[bookstbl]
                                        SET [Author] = @Author
                                           ,[Division] = @Division
                                           ,[Names] = @Names
@@ -257,17 +253,16 @@ namespace BookRentalShopApp
                                           ,[ISBN] = @ISBN
                                           ,[Price] = @Price
                                           ,[Descriptions] = @Descriptions
-                                           WHERE Idx = @Idx";
+                                     WHERE Idx = @Idx ";
                     }
                     cmd.CommandText = query;
 
-
-                    var pAuthor = new SqlParameter("@Author", SqlDbType.Char, 50);
+                    var pAuthor = new SqlParameter("@Author", SqlDbType.NVarChar, 50);
                     pAuthor.Value = TxtAuthor.Text;
                     cmd.Parameters.Add(pAuthor);
 
                     var pDivision = new SqlParameter("@Division", SqlDbType.VarChar, 8);
-                    pDivision.Value = CboDivision.SelectedValue;
+                    pDivision.Value = CboDivision.SelectedValue; // B001
                     cmd.Parameters.Add(pDivision);
 
                     var pNames = new SqlParameter("@Names", SqlDbType.NVarChar, 100);
@@ -287,32 +282,26 @@ namespace BookRentalShopApp
                     cmd.Parameters.Add(pPrice);
 
                     var pDescriptions = new SqlParameter("@Descriptions", SqlDbType.NVarChar);
-                    pDescriptions.Value = TxtDiscriptions.Text;
+                    pDescriptions.Value = TxtDescriptions.Text;
                     cmd.Parameters.Add(pDescriptions);
 
-                    if (IsNew == false) // UPDATE일때만 처리
+                    if (isNew == false) // Update 일때만 처리
                     {
-                    var pIdx = new SqlParameter("@Idx", SqlDbType.Int);
-                    pIdx.Value = TxtIdx.Text;
-                    cmd.Parameters.Add(pIdx);
-
+                        var pIdx = new SqlParameter("@Idx", SqlDbType.Int);
+                        pIdx.Value = TxtIdx.Text;
+                        cmd.Parameters.Add(pIdx);
                     }
-                    //SqlParameter param;
-
-                    //cmd.Parameters.Add(param);
 
                     var result = cmd.ExecuteNonQuery();
                     if (result == 1)
                     {
-                        //저장성공
-                        MetroMessageBox.Show(this, "저장 성공", "저장", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
+                        MetroMessageBox.Show(this, "저장 성공", "저장",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
                     }
                     else
                     {
-                        //저장실패
-                        MetroMessageBox.Show(this, "저장 실패", "저장", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-
+                        MetroMessageBox.Show(this, "저장 실패", "저장",
+                            MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     }
                 }
             }
@@ -321,18 +310,6 @@ namespace BookRentalShopApp
                 MetroMessageBox.Show(this, $"예외발생 : {ex.Message}", "오류", MessageBoxButtons.OK,
                     MessageBoxIcon.Error);
             }
-        }
-
-        private void ClearInputs()
-        {
-            TxtIdx.Text = TxtAuthor.Text = "";
-            TxtNames.Text = TxtISBN.Text  = "";
-            TxtPrice.Text = "";
-            TxtDiscriptions.Text = "";
-            CboDivision.SelectedIndex = -1;
-            DtpReleaseDate.Value = DateTime.Now; // 오늘날짜로 초기화
-            TxtIdx.ReadOnly = true;
-            IsNew = true;
         }
 
         /// <summary>
@@ -353,32 +330,17 @@ namespace BookRentalShopApp
 
             return true;
         }
-        private void InitCboData()
+
+        private void ClearInputs()
         {
-            try
-            {
-                using (SqlConnection conn = new SqlConnection(Helper.Common.ConnString))
-                {
-                    if (conn.State == ConnectionState.Closed) conn.Open();
-                    var query = "SELECT Division, Names FROM dbo.divtbl ";
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    SqlDataReader reader = cmd.ExecuteReader();
-                    var temp = new Dictionary<string, string>();
-                    while (reader.Read()) // 한줄씩 읽어나감 
-                    {
-                        temp.Add(reader[0].ToString(), reader[1].ToString());
-                    }
-                    CboDivision.DataSource = new BindingSource(temp, null);
-                    CboDivision.DisplayMember = "Value";
-                    CboDivision.ValueMember = "Key";
-                    CboDivision.SelectedIndex = -1;
-
-
-                }
-            }
-            catch (Exception ex) { }
+            TxtIdx.Text = TxtAuthor.Text = "";
+            TxtNames.Text = TxtISBN.Text = "";
+            TxtPrice.Text = TxtDescriptions.Text = "";
+            CboDivision.SelectedIndex = -1; // ?
+            DtpReleaseDate.Value = DateTime.Now; // 오늘 날짜로 초기화
+            TxtIdx.ReadOnly = true;
+            isNew = true;
         }
-
 
         #endregion
     }

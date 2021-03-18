@@ -30,11 +30,12 @@ namespace BookRentalShopApp
         private void InitializeComponent()
         {
             this.GrbDetail = new System.Windows.Forms.GroupBox();
+            this.DtpReleaseDate = new MetroFramework.Controls.MetroDateTime();
             this.CboDivision = new MetroFramework.Controls.MetroComboBox();
             this.BtnSave = new MetroFramework.Controls.MetroButton();
             this.BtnNew = new MetroFramework.Controls.MetroButton();
             this.BtnDelete = new MetroFramework.Controls.MetroButton();
-            this.TxtDiscriptions = new MetroFramework.Controls.MetroTextBox();
+            this.TxtDescriptions = new MetroFramework.Controls.MetroTextBox();
             this.TxtPrice = new MetroFramework.Controls.MetroTextBox();
             this.TxtISBN = new MetroFramework.Controls.MetroTextBox();
             this.TxtNames = new MetroFramework.Controls.MetroTextBox();
@@ -49,7 +50,6 @@ namespace BookRentalShopApp
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.DgvData = new System.Windows.Forms.DataGridView();
-            this.DtpReleaseDate = new MetroFramework.Controls.MetroDateTime();
             this.GrbDetail.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.DgvData)).BeginInit();
             this.SuspendLayout();
@@ -63,7 +63,7 @@ namespace BookRentalShopApp
             this.GrbDetail.Controls.Add(this.BtnSave);
             this.GrbDetail.Controls.Add(this.BtnNew);
             this.GrbDetail.Controls.Add(this.BtnDelete);
-            this.GrbDetail.Controls.Add(this.TxtDiscriptions);
+            this.GrbDetail.Controls.Add(this.TxtDescriptions);
             this.GrbDetail.Controls.Add(this.TxtPrice);
             this.GrbDetail.Controls.Add(this.TxtISBN);
             this.GrbDetail.Controls.Add(this.TxtNames);
@@ -83,6 +83,14 @@ namespace BookRentalShopApp
             this.GrbDetail.TabIndex = 0;
             this.GrbDetail.TabStop = false;
             this.GrbDetail.Text = "상세";
+            // 
+            // DtpReleaseDate
+            // 
+            this.DtpReleaseDate.Location = new System.Drawing.Point(100, 155);
+            this.DtpReleaseDate.MinimumSize = new System.Drawing.Size(0, 29);
+            this.DtpReleaseDate.Name = "DtpReleaseDate";
+            this.DtpReleaseDate.Size = new System.Drawing.Size(187, 29);
+            this.DtpReleaseDate.TabIndex = 6;
             // 
             // CboDivision
             // 
@@ -128,40 +136,40 @@ namespace BookRentalShopApp
             this.BtnDelete.UseSelectable = true;
             this.BtnDelete.Click += new System.EventHandler(this.BtnDelete_Click);
             // 
-            // TxtDiscriptions
+            // TxtDescriptions
             // 
-            this.TxtDiscriptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            this.TxtDescriptions.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left)));
             // 
             // 
             // 
-            this.TxtDiscriptions.CustomButton.Image = null;
-            this.TxtDiscriptions.CustomButton.Location = new System.Drawing.Point(55, 2);
-            this.TxtDiscriptions.CustomButton.Name = "";
-            this.TxtDiscriptions.CustomButton.Size = new System.Drawing.Size(129, 129);
-            this.TxtDiscriptions.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
-            this.TxtDiscriptions.CustomButton.TabIndex = 1;
-            this.TxtDiscriptions.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.TxtDiscriptions.CustomButton.UseSelectable = true;
-            this.TxtDiscriptions.CustomButton.Visible = false;
-            this.TxtDiscriptions.Lines = new string[0];
-            this.TxtDiscriptions.Location = new System.Drawing.Point(101, 253);
-            this.TxtDiscriptions.MaxLength = 32767;
-            this.TxtDiscriptions.Multiline = true;
-            this.TxtDiscriptions.Name = "TxtDiscriptions";
-            this.TxtDiscriptions.PasswordChar = '\0';
-            this.TxtDiscriptions.PromptText = "설명";
-            this.TxtDiscriptions.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.TxtDiscriptions.SelectedText = "";
-            this.TxtDiscriptions.SelectionLength = 0;
-            this.TxtDiscriptions.SelectionStart = 0;
-            this.TxtDiscriptions.ShortcutsEnabled = true;
-            this.TxtDiscriptions.Size = new System.Drawing.Size(187, 134);
-            this.TxtDiscriptions.TabIndex = 9;
-            this.TxtDiscriptions.UseSelectable = true;
-            this.TxtDiscriptions.WaterMark = "설명";
-            this.TxtDiscriptions.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
-            this.TxtDiscriptions.WaterMarkFont = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.TxtDescriptions.CustomButton.Image = null;
+            this.TxtDescriptions.CustomButton.Location = new System.Drawing.Point(55, 2);
+            this.TxtDescriptions.CustomButton.Name = "";
+            this.TxtDescriptions.CustomButton.Size = new System.Drawing.Size(129, 129);
+            this.TxtDescriptions.CustomButton.Style = MetroFramework.MetroColorStyle.Blue;
+            this.TxtDescriptions.CustomButton.TabIndex = 1;
+            this.TxtDescriptions.CustomButton.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.TxtDescriptions.CustomButton.UseSelectable = true;
+            this.TxtDescriptions.CustomButton.Visible = false;
+            this.TxtDescriptions.Lines = new string[0];
+            this.TxtDescriptions.Location = new System.Drawing.Point(101, 253);
+            this.TxtDescriptions.MaxLength = 32767;
+            this.TxtDescriptions.Multiline = true;
+            this.TxtDescriptions.Name = "TxtDescriptions";
+            this.TxtDescriptions.PasswordChar = '\0';
+            this.TxtDescriptions.PromptText = "설명";
+            this.TxtDescriptions.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.TxtDescriptions.SelectedText = "";
+            this.TxtDescriptions.SelectionLength = 0;
+            this.TxtDescriptions.SelectionStart = 0;
+            this.TxtDescriptions.ShortcutsEnabled = true;
+            this.TxtDescriptions.Size = new System.Drawing.Size(187, 134);
+            this.TxtDescriptions.TabIndex = 9;
+            this.TxtDescriptions.UseSelectable = true;
+            this.TxtDescriptions.WaterMark = "설명";
+            this.TxtDescriptions.WaterMarkColor = System.Drawing.Color.FromArgb(((int)(((byte)(109)))), ((int)(((byte)(109)))), ((int)(((byte)(109)))));
+            this.TxtDescriptions.WaterMarkFont = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             // 
             // TxtPrice
             // 
@@ -411,14 +419,6 @@ namespace BookRentalShopApp
             this.DgvData.TabIndex = 1;
             this.DgvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.DgvData_CellClick);
             // 
-            // DtpReleaseDate
-            // 
-            this.DtpReleaseDate.Location = new System.Drawing.Point(100, 155);
-            this.DtpReleaseDate.MinimumSize = new System.Drawing.Size(0, 29);
-            this.DtpReleaseDate.Name = "DtpReleaseDate";
-            this.DtpReleaseDate.Size = new System.Drawing.Size(187, 29);
-            this.DtpReleaseDate.TabIndex = 6;
-            // 
             // FrmBooks
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -455,7 +455,7 @@ namespace BookRentalShopApp
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroComboBox CboDivision;
-        private MetroFramework.Controls.MetroTextBox TxtDiscriptions;
+        private MetroFramework.Controls.MetroTextBox TxtDescriptions;
         private MetroFramework.Controls.MetroTextBox TxtPrice;
         private MetroFramework.Controls.MetroTextBox TxtISBN;
         private MetroFramework.Controls.MetroTextBox TxtNames;
