@@ -13,6 +13,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Diagnostics;
+using System.Data;
 
 namespace ModernUITestApp
 {
@@ -24,6 +26,42 @@ namespace ModernUITestApp
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Process.Start("https://www.youtube.com/");
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void MnuExit_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        private void MetroWindow_Initialized(object sender, EventArgs e)
+        {
+            DataTable dt = new DataTable();
+            dt.Columns.Add("VALUE", typeof(string));
+            dt.Columns.Add("NAME", typeof(string));
+
+            // 값넣기
+            dt.Rows.Add(new string[] { "B001", "공포/판타지" });
+            dt.Rows.Add(new string[] { "B002", "로맨스" });
+            dt.Rows.Add(new string[] { "B003", "SF" });
+            dt.Rows.Add(new string[] { "B004", "무협" });
+
+            CboDivision.ItemsSource = dt.DefaultView;
+            CboDivision.DisplayMemberPath = "NAME";
+            CboDivision.SelectedValuePath = "VALUE";
+
+
+
+
         }
     }
 }

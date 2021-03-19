@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfLoginApp", "WpfLoginApp\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ModernUITestApp", "ModernUITestApp\ModernUITestApp.csproj", "{3691A7B2-06EB-43B6-BB73-6A6C1EAFED32}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfPracticeApp", "WpfPracticeApp\WpfPracticeApp.csproj", "{104E4412-1F4F-4699-A834-03EEC6F07BA3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{3691A7B2-06EB-43B6-BB73-6A6C1EAFED32}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3691A7B2-06EB-43B6-BB73-6A6C1EAFED32}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3691A7B2-06EB-43B6-BB73-6A6C1EAFED32}.Release|Any CPU.Build.0 = Release|Any CPU
+		{104E4412-1F4F-4699-A834-03EEC6F07BA3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{104E4412-1F4F-4699-A834-03EEC6F07BA3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{104E4412-1F4F-4699-A834-03EEC6F07BA3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{104E4412-1F4F-4699-A834-03EEC6F07BA3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
