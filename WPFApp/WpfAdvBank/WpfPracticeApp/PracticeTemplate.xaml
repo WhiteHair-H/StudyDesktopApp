@@ -1,0 +1,9 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <Button x:Key="button" Content="Hello World"></Button>
+    <SolidColorBrush x:Key="accentBrush" Color="Red"></SolidColorBrush>
+    <LinearGradientBrush x:Key="background">
+        <GradientStop Color="AliceBlue" Offset="0"/>
+        <GradientStop Color="IndianRed" Offset="1"/>
+    </LinearGradientBrush>
+</ResourceDictionary>

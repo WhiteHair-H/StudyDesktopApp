@@ -9,7 +9,7 @@
       d:DesignHeight="450" d:DesignWidth="800"
       Title="Contact" Initialized="Page_Initialized">
 
-    <Grid Margin="10">
+    <Grid Margin="10" Background="{StaticResource background}">
         <Grid.RowDefinitions>
             <RowDefinition Height="1*" />
             <RowDefinition Height="6*"/>
@@ -28,7 +28,8 @@
         
 
         <StackPanel  Grid.Row="2" Grid.Column="1" Orientation="Horizontal" HorizontalAlignment="Right">
-            <Button x:Name="BtnSend" Content="Send" Margin="5" Width="100" FontSize="14"/>
+            <Button x:Name="BtnSend" Content="Send" Margin="5" Width="100" FontSize="14"
+                    Background="{StaticResource MahApps.Brushes.SystemControlDisabledChromeHigh}" Style="{StaticResource MahApps.Styles.Button.Circle}"/>
             <Button x:Name="BtnCancel" Content="Cancel" Margin="5" Width="100" FontSize="14"/>
 
         </StackPanel>

@@ -30,7 +30,7 @@ namespace WpfPracticeApp
         {
             Car car = new Car();
             car.Speed = 10;
-            car.Maincolor = Colors.Red;
+            car.MainColor = Colors.Red;
 
         }
     }

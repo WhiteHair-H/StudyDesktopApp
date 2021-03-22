@@ -7,7 +7,11 @@
       mc:Ignorable="d" 
       d:DesignHeight="450" d:DesignWidth="800"
       Title="MainMenu">
-
+    <Page.Resources>
+        <ResourceDictionary>
+            <Button x:Key="button" Content="Hello World"></Button>
+        </ResourceDictionary>
+    </Page.Resources>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="1*"/>
@@ -21,18 +25,31 @@
         </Grid.ColumnDefinitions>
 
         <Button x:Name="BtnProducts"
-                Grid.Row="1" Grid.Column="0"
+                Grid.Row="1" Grid.Column="0" 
                 Content="Products" Margin="10" Height="Auto" Click="BtnProducts_Click"/>
         <Button x:Name="BtnLiveSupport"
                 Grid.Row="1" Grid.Column="1"
                 Content="Live Support" Margin="10" Height="Auto" Click="BtnLiveSupport_Click"/>
         <Button x:Name="BtnEmailSupport"
                 Grid.Row="1" Grid.Column="2"
-                Content="Email Support" Margin="10" Height="Auto" Click="BtnEmailSupport_Click"/>
+                Content="Email Support" Margin="10" Height="Auto" Click="BtnEmailSupport_Click">
+            <Button.Template>
+                <ControlTemplate TargetType="{x:Type Button}">
+                    <Grid>
+                        <Label Content="{TemplateBinding Content}" 
+                               HorizontalAlignment="Center" 
+                               VerticalAlignment="Center"
+                               Foreground="White"
+                               FontSize="15"/>
+                    </Grid>
+                </ControlTemplate>
+            </Button.Template>
+        </Button>
 
         <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="3"
                Content="Adventure Works"
-               FontSize="36" HorizontalContentAlignment="Center" />
-
+               FontSize="36" HorizontalContentAlignment="Center" 
+               Foreground="White"/>
+        <Button Content="{StaticResource button}"></Button>
     </Grid>
 </Page>

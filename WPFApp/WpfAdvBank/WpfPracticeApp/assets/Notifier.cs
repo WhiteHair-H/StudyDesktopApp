@@ -11,4 +11,5 @@ public class Notifier : INotifyPropertyChanged
             PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
         }
     }
+
 }
