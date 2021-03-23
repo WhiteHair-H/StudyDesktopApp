@@ -40,9 +40,13 @@ namespace IoTSensorMonApp
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripSeparator();
             this.MnuExit = new System.Windows.Forms.ToolStripMenuItem();
             this.시뮬레이션ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuBeginSimulation = new System.Windows.Forms.ToolStripMenuItem();
+            this.MnuEndSimulation = new System.Windows.Forms.ToolStripMenuItem();
             this.PrbPhotoResister = new System.Windows.Forms.ProgressBar();
             this.CboSerialPort = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
             this.LblConnectTime = new System.Windows.Forms.Label();
             this.TxtSensorNum = new System.Windows.Forms.TextBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -53,10 +57,6 @@ namespace IoTSensorMonApp
             this.ChtPhotoResistor = new System.Windows.Forms.DataVisualization.Charting.Chart();
             this.BtnViewAll = new System.Windows.Forms.Button();
             this.BtnZoom = new System.Windows.Forms.Button();
-            this.MnuBeginSimulation = new System.Windows.Forms.ToolStripMenuItem();
-            this.MnuEndSimulation = new System.Windows.Forms.ToolStripMenuItem();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -88,24 +88,24 @@ namespace IoTSensorMonApp
             // MnuLoadFile
             // 
             this.MnuLoadFile.Name = "MnuLoadFile";
-            this.MnuLoadFile.Size = new System.Drawing.Size(180, 22);
+            this.MnuLoadFile.Size = new System.Drawing.Size(139, 22);
             this.MnuLoadFile.Text = "읽어오기(&O)";
             // 
             // MnuSaveFile
             // 
             this.MnuSaveFile.Name = "MnuSaveFile";
-            this.MnuSaveFile.Size = new System.Drawing.Size(180, 22);
+            this.MnuSaveFile.Size = new System.Drawing.Size(139, 22);
             this.MnuSaveFile.Text = "저장하기(&S)";
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(177, 6);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(136, 6);
             // 
             // MnuExit
             // 
             this.MnuExit.Name = "MnuExit";
-            this.MnuExit.Size = new System.Drawing.Size(180, 22);
+            this.MnuExit.Size = new System.Drawing.Size(139, 22);
             this.MnuExit.Text = "종료(&X)";
             this.MnuExit.Click += new System.EventHandler(this.MnuExit_Click);
             // 
@@ -117,6 +117,20 @@ namespace IoTSensorMonApp
             this.시뮬레이션ToolStripMenuItem.Name = "시뮬레이션ToolStripMenuItem";
             this.시뮬레이션ToolStripMenuItem.Size = new System.Drawing.Size(94, 20);
             this.시뮬레이션ToolStripMenuItem.Text = "시뮬레이션(&S)";
+            // 
+            // MnuBeginSimulation
+            // 
+            this.MnuBeginSimulation.Name = "MnuBeginSimulation";
+            this.MnuBeginSimulation.Size = new System.Drawing.Size(113, 22);
+            this.MnuBeginSimulation.Text = "시작(&B)";
+            this.MnuBeginSimulation.Click += new System.EventHandler(this.MnuBeginSimulation_Click);
+            // 
+            // MnuEndSimulation
+            // 
+            this.MnuEndSimulation.Name = "MnuEndSimulation";
+            this.MnuEndSimulation.Size = new System.Drawing.Size(113, 22);
+            this.MnuEndSimulation.Text = "끝(&E)";
+            this.MnuEndSimulation.Click += new System.EventHandler(this.MnuEndSimulation_Click);
             // 
             // PrbPhotoResister
             // 
@@ -147,6 +161,24 @@ namespace IoTSensorMonApp
             this.groupBox1.TabIndex = 3;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "PhotoResister";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(354, 56);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(35, 15);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "1023";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(9, 56);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(14, 15);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "0";
             // 
             // LblConnectTime
             // 
@@ -258,38 +290,6 @@ namespace IoTSensorMonApp
             this.BtnZoom.Text = "Zoom";
             this.BtnZoom.UseVisualStyleBackColor = true;
             this.BtnZoom.Click += new System.EventHandler(this.BtnZoom_Click);
-            // 
-            // MnuBeginSimulation
-            // 
-            this.MnuBeginSimulation.Name = "MnuBeginSimulation";
-            this.MnuBeginSimulation.Size = new System.Drawing.Size(180, 22);
-            this.MnuBeginSimulation.Text = "시작(&B)";
-            this.MnuBeginSimulation.Click += new System.EventHandler(this.MnuBeginSimulation_Click);
-            // 
-            // MnuEndSimulation
-            // 
-            this.MnuEndSimulation.Name = "MnuEndSimulation";
-            this.MnuEndSimulation.Size = new System.Drawing.Size(180, 22);
-            this.MnuEndSimulation.Text = "끝(&E)";
-            this.MnuEndSimulation.Click += new System.EventHandler(this.MnuEndSimulation_Click);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(9, 56);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(14, 15);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "0";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(354, 56);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(35, 15);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "1023";
             // 
             // FrmMain
             // 
