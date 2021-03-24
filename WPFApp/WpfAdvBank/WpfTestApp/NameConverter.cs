@@ -19,9 +19,12 @@ namespace WpfTestApp
                 case "FormatLastFirst":
                 name = $"{values[1]},{values[0]}";
                     break;
-                default:
+                case "FormatNormal":
                     name = $"{values[0]} {values[1]}";
 
+                    break;
+                default:
+                    name = "";
                     break;
             }
 
@@ -30,7 +33,9 @@ namespace WpfTestApp
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            //throw new NotImplementedException();
+            var splitvalues = ((string)value).Split(' ');
+            return splitvalues;
         }
     }
 }
