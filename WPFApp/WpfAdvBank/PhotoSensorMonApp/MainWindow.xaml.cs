@@ -152,7 +152,9 @@ namespace PhotoSensorMonApp
 
         private void MnuSignOut_Click(object sender, RoutedEventArgs e)
         {
-            Environment.Exit(0);
+            //Environment.Exit(0);
+
+            Application.Current.Shutdown(0); //위에 코드보다 훨씬 빨리 종료됨
         }
 
         private void MnuLoad_click(object sender, RoutedEventArgs e)
