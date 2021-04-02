@@ -12,7 +12,8 @@
 
 --------------------------
 
-[![Solved.ac프로필](http://mazassumnida.wtf/api/v2/generate_badge?boj={WhiteHair-H})](https://solved.ac/{WhiteHair-H})
+[![solved.ac tier](http://mazassumnida.wtf/api/generate_badge?boj=kinetic27)](https://solved.ac/kinetic27)
+
 
 
 --------------------------
