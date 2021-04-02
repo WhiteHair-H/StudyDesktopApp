@@ -12,7 +12,7 @@
 
 --------------------------
 
-[![Solved.ac프로필](http://mazassumnida.wtf/api/v2/generate_badge?boj={WhiteHair-H})](https://solved.ac/{handle})
+[![Solved.ac프로필](http://mazassumnida.wtf/api/v2/generate_badge?boj={WhiteHair-H})](https://solved.ac/{WhiteHair-H})
 
 
 --------------------------
