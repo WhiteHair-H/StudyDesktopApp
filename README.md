@@ -41,7 +41,7 @@
 
 ### 주소록
 
-![주소록](/ref_ImageFile/WInForm/AddressInfoApp.jpg "주소록")
+![주소록](/ref_ImageFile/WInForm/AddressInfoApp.JPG "주소록")
 
 ---------------------------
 
