@@ -40,7 +40,8 @@
 ---------------------------
 
 ### 주소록
-[Address](https://github.com/WhiteHair-H/StudyDesktopApp/blob/main/ImageFile/WInForm/AddressInfoApp.jpg)
+
+![주소록](/ref_ImageFile//WInForm/AddressInfoApp.jpg "주소록")
 
 ---------------------------
 
