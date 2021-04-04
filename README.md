@@ -48,6 +48,7 @@
 
 
 ![블링커](https://github.com/WhiteHair-H/StudyDesktopApp/blob/main/ImageFile/WInForm/BlinkerApp.jpg "블링커")
+
 ---------------------------
 ### BMI계산기
 
@@ -99,7 +100,7 @@
 ### 라벨텍스트입력
 
 
-![이미지뷰](https://github.com/WhiteHair-H/StudyDesktopApp/blob/main/ImageFile/WInForm/ImageViewerApp.jpg "이미지뷰")
+![라벨텍스트입력](https://github.com/WhiteHair-H/StudyDesktopApp/blob/main/ImageFile/WInForm/LabelTestApp.jpg "라벨텍스트입력")
 
 ---------------------------
 ### 아이콘리스트
