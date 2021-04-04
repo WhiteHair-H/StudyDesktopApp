@@ -26,26 +26,38 @@
 
 ## ConfirmWinApp
 
+---------------------------
+
 ## ExcerciseWinApp
 
+
+---------------------------
 ## PracticeWinApp
 
+
+---------------------------
 ## WinExecutiveBank
 
+
+---------------------------
 ## WinformAdvancedBank
 
+---------------------------
 
 
 ## WPF C#
 * [WpfLoginApp](#WpfLoginApp)
 * [WpfExecutiveBank](#WpfExecutiveBank)
 
-
+---------------------------
 ## WpfLoginApp
 
 
+---------------------------
 ## WpfExecutiveBank
 
+
+---------------------------
 
 
 
