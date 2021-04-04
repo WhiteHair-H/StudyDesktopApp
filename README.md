@@ -13,11 +13,6 @@
 
 ![WhiteHair-H GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=kacho_ga&show_icons=true)
 
---------------------------
-
-[![solved.ac tier](http://mazassumnida.wtf/api/generate_badge?boj=WhiteHair-H)](https://solved.ac/WhiteHair-H)
-
-
 
 --------------------------
 ## WINFORM C#
