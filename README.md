@@ -12,7 +12,7 @@
 
 --------------------------
 
-![WhiteHair-H GitHub stats](https://github-readme-stats.vercel.app/api?username=anuraghazra&theme=kacho_ga&show_icons=true)
+![WhiteHair-H GitHub stats](https://github-readme-stats.vercel.app/api?username=WhiteHair-H&theme=kacho_ga&show_icons=true)
 
 
 --------------------------
